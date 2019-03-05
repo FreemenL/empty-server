@@ -38,10 +38,10 @@ Allowed values are as follows
 
 |Name|Type|Default|Description|
 |:--:|:--:|:-----:|:----------|
-|**`p|port`**|`{number}`|8080|port is used to specify the port of the service|
-|**`P|proxy`**|`{String}`||proxy is used to configure proxies for services|
-|**`o|host`**|`{string}`|`loclhost`|host is used to configure monitored hosts|
-|**`d|root`**|`{string}`|"process.cwd()"|root is used to configure the static file root directory|
+|`p|port`|`{number}`|8080|port is used to specify the port of the service|
+|`P|proxy`|`{String}`||proxy is used to configure proxies for services|
+|`o|host`|`{string}`|`loclhost`|host is used to configure monitored hosts|
+|`d|root`|`{string}`|"process.cwd()"|root is used to configure the static file root directory|
 
 <h2 align="center">Maintainers</h2>
 
