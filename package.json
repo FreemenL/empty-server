@@ -1,0 +1,24 @@
+{
+  "name": "emptyd-server",
+  "version": "1.0.0",
+  "description": "Static Resource Services",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "emptyd-server": "./bin/www"
+  },
+  "keywords": [
+    "httpserver"
+  ],
+  "author": "freemenL",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "debug": "^4.1.1",
+    "handlebars": "^4.1.0",
+    "mime": "^2.4.0",
+    "yargs": "^13.2.1"
+  }
+}
