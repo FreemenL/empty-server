@@ -5,6 +5,7 @@ const path = require("path");
 const mime = require("mime");
 const url = require("url");
 const fs = require("fs");
+const zlib = require("zlib");
 const handlebars = require("handlebars");
 
 const  { promisify ,inspect } = require("util");
@@ -72,7 +73,7 @@ class Server {
             return this.proxyRequest(req,res,proxy+pathname);
         }
         const filepath = path.join(this.config.root,pathname);
-        try{
+        try{ 
             let statObj = await stat(filepath);
             if(statObj.isDirectory()){
                 let files = await readdir(filepath);
@@ -99,8 +100,43 @@ class Server {
 
     }
     sendFile(req,res,filepath,statObj){
-        res.setHeader("Content-Type",mime.getType(filepath));
-        fs.createReadStream(filepath).pipe(res);
+        if(this.handleCache(req,res,filepath,statObj)) return;
+        res.setHeader("Content-Type",mime.getType(filepath)+";charset=utf-8");
+        let encoding = this.getEncoding(req,res);
+        if(encoding){
+            fs.createReadStream(filepath).pipe(encoding).pipe(res);
+        }else{
+            fs.createReadStream(filepath).pipe(res);
+        }
+    }
+    handleCache(req,res,filepath,statObj){
+        const ifNoneMatch = req.headers['if-none-match']; //Etag
+        const ifModifiedSince = req.headers['if-modified-since']; //last-modified
+        res.setHeader("Cache-Control","private,max-age=30");
+        res.setHeader("Expirse",new Date(Date.now()+30*1000).toGMTString());
+        let eTag = statObj.size;
+        let lastModified = statObj.ctime.toGMTString();
+        const rules = [()=>ifNoneMatch&&ifNoneMatch==eTag,()=>ifModifiedSince&&ifModifiedSince==lastModified].filter(r=>r());
+        res.setHeader("ETag",eTag);
+        res.setHeader("Last-Modified",lastModified)
+        if(rules.length>0){
+            res.writeHead(304);
+            res.end();
+            return true;
+        }
+        return false;
+    }
+    getEncoding(req,res){
+        const acceptEncoding = req.headers["accept-encoding"];
+        if(/\bgzip\b/.test(acceptEncoding)){
+            res.setHeader('Content-Encoding',"gzip");
+            return zlib.createGzip();
+        }else if(/\bdeflate\b/.test(acceptEncoding)){
+            res.setHeader('Content-Encoding',"deflate");
+            return zlib.createDeflate();
+        }else{
+            return null;
+        }
     }
     sendError(req,res){
         res.statusCode = 500;

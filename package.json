@@ -9,6 +9,10 @@
   "bin": {
     "emptyd-server": "./bin/www"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FreemenL/emptyd-server.git"
+  },
   "keywords": [
     "httpserver"
   ],
