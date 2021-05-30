@@ -21,7 +21,7 @@
   "dependencies": {
     "chalk": "^2.4.1",
     "debug": "^4.1.1",
-    "handlebars": "^4.1.0",
+    "handlebars": "^4.7.7",
     "mime": "^2.4.0",
     "yargs": "^13.2.1"
   }
