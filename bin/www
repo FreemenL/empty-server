@@ -27,8 +27,8 @@ let argv = yargs.option("d",{
     type:"string",
     description:"请配代理地址"
 })
-.usage("emptyd-server []")
-.example("emptyd-server -d / -p 8080 -o localhost -P http://129.204.139.211","在本机8080 端口上监听客户端的请求")
+.usage("empty-server []")
+.example("empty-server -d / -p 8080 -o localhost -P http://129.204.139.211","在本机8080 端口上监听客户端的请求")
 .help('h').argv
 
 const server = new Server(argv);

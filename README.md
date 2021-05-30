@@ -4,36 +4,36 @@
     <img width="400" height="200"
       src="http://img0.imgtn.bdimg.com/it/u=491865045,1211705331&fm=26&gp=0.jpg">
   </a>
-  <h1>emptyd-server</h1>
-  <p>emptyd-server is a simple, zero-configuration command-line http server. It is powerful enough for production usage, but it's simple and hackable enough to be used for testing, local development, and learning.</p>
+  <h1>empty-server</h1>
+  <p>empty-server is a simple, zero-configuration command-line http server. It is powerful enough for production usage, but it's simple and hackable enough to be used for testing, local development, and learning.</p>
 </div>
 
 <h2 align="center">Install</h2>
 
 ```bash
-  cnpm install emptyd-server -g
+  cnpm install empty-server -g
 ```
 
 ```bash
-  npm install emptyd-server -g
+  npm install empty-server -g
 ```
 
 <h2 align="center">Zero Config</h2>
 
-The `emptyd-server` works without configuration.  
+The `empty-server` works without configuration.  
 
 <h2 align="center">Usage</h2>
 
 Static Resource Services
 
 ```
-"emptyd-server -d / -p 8080 -o localhost -P http://129.204.139.211"
+"empty-server -d / -p 8080 -o localhost -P http://129.204.139.211"
 
 ```
 
 <h2 align="center">Options</h2>
 
-You can pass a hash of configuration options to `emptyd-server`.
+You can pass a hash of configuration options to `empty-server`.
 Allowed values are as follows
 
 |Name|Type|Default|Description|

@@ -1,5 +1,5 @@
 {
-  "name": "emptyd-server",
+  "name": "empty-server",
   "version": "1.0.0",
   "description": "Static Resource Services",
   "main": "index.js",
@@ -7,11 +7,11 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "emptyd-server": "./bin/www"
+    "empty-server": "./bin/www"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/FreemenL/emptyd-server.git"
+    "url": "https://github.com/FreemenL/empty-server.git"
   },
   "keywords": [
     "httpserver"
